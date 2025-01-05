@@ -45,13 +45,51 @@ const PdfGenerator = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold text-center mb-6">
-        Cover Page Generator
-      </h1>
+      
       <div className="lg:flex">
         {/* Input Fields */}
         <div className="lg:w-1/2">
           <div className="grid grid-cols-1 gap-4 max-w-lg mx-auto">
+            <input
+              type="text"
+              name="studentName"
+              placeholder="Student Name"
+              value={formData.studentName}
+              onChange={handleChange}
+              className="p-2 border rounded"
+            />
+            <input
+              type="text"
+              name="studentId"
+              placeholder="Student ID"
+              value={formData.studentId}
+              onChange={handleChange}
+              className="p-2 border rounded"
+            />
+            <input
+              type="text"
+              name="batch"
+              placeholder="Batch"
+              value={formData.batch}
+              onChange={handleChange}
+              className="p-2 border rounded"
+            />
+            <input
+              type="text"
+              name="semester"
+              placeholder="Semester"
+              value={formData.semester}
+              onChange={handleChange}
+              className="p-2 border rounded"
+            />
+            <input
+              type="text"
+              name="session"
+              placeholder="Session"
+              value={formData.session}
+              onChange={handleChange}
+              className="p-2 border rounded"
+            />
             <select
               name="department"
               value={formData.department}
@@ -129,46 +167,7 @@ const PdfGenerator = () => {
               onChange={handleChange}
               className="p-2 border rounded"
             />
-            <input
-              type="text"
-              name="studentName"
-              placeholder="Student Name"
-              value={formData.studentName}
-              onChange={handleChange}
-              className="p-2 border rounded"
-            />
-            <input
-              type="text"
-              name="studentId"
-              placeholder="Student ID"
-              value={formData.studentId}
-              onChange={handleChange}
-              className="p-2 border rounded"
-            />
-            <input
-              type="text"
-              name="batch"
-              placeholder="Batch"
-              value={formData.batch}
-              onChange={handleChange}
-              className="p-2 border rounded"
-            />
-            <input
-              type="text"
-              name="semester"
-              placeholder="Semester"
-              value={formData.semester}
-              onChange={handleChange}
-              className="p-2 border rounded"
-            />
-            <input
-              type="text"
-              name="session"
-              placeholder="Session"
-              value={formData.session}
-              onChange={handleChange}
-              className="p-2 border rounded"
-            />
+
             <input
               type="text"
               name="teacherName"
@@ -233,6 +232,9 @@ const PdfGenerator = () => {
               />
             )}
 
+            <label htmlFor="dateOfExperiment" className="text-left">
+              Date of Experiment:
+            </label>
             <input
               type="date"
               name="dateOfExperiment"
@@ -240,6 +242,9 @@ const PdfGenerator = () => {
               onChange={handleChange}
               className="p-2 border rounded"
             />
+            <label htmlFor="dateOfSubmission" className="text-left">
+              Date of Submission:
+            </label>
             <input
               type="date"
               name="dateOfSubmission"
@@ -279,13 +284,21 @@ const PdfGenerator = () => {
             </h2>
           </div>
           <div className="text-left pl-10 py-4">
-            <p><span className="font-bold">Course Code:</span> {formData.courseCode}</p>
-            <p ><span className="font-bold">Course Title:</span> {formData.courseTitle}</p>
-            <p >
-            <span className="font-bold">Experiment No:</span> {formData.experimentNo}
+            <p>
+              <span className="font-bold">Course Code:</span>{" "}
+              {formData.courseCode}
             </p>
             <p>
-            <span className="font-bold">Experiment Name:</span> {formData.experimentName}
+              <span className="font-bold">Course Title:</span>{" "}
+              {formData.courseTitle}
+            </p>
+            <p>
+              <span className="font-bold">Experiment No:</span>{" "}
+              {formData.experimentNo}
+            </p>
+            <p>
+              <span className="font-bold">Experiment Name:</span>{" "}
+              {formData.experimentName}
             </p>
           </div>
 
