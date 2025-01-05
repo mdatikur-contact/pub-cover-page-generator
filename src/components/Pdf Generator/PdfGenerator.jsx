@@ -1,9 +1,163 @@
 import React, { useState } from "react";
-import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
-import logo from "../images/university logo.png";
+import {
+  Document,
+  Page,
+  Text,
+  View,
+  StyleSheet,
+  PDFDownloadLink,
+  Image,
+} from "@react-pdf/renderer";
+import { Worker, Viewer } from "@react-pdf-viewer/core";
+import "@react-pdf-viewer/core/lib/styles/index.css";
+import universityLogo from "../images/pub logo.jpg";
 
-const PdfGenerator = () => {
+// Define styles for the PDF
+const styles = StyleSheet.create({
+  page: {
+    padding: 20,
+  },
+  header: {
+    alignItems: "center",
+    marginBottom: 25,
+  },
+  logo: {
+    width: 96,
+    margin: 10,
+    marginBottom: 20,
+    marginTop: 20,
+  },
+  title: {
+    fontSize: 25,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 10,
+    marginTop: 20,
+  },
+  subtitle: {
+    fontSize: 20,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginVertical: 20,
+  },
+  text: {
+    fontSize: 15,
+    marginBottom: 8,
+    marginLeft: 30,
+    marginRight: 30,
+  },
+
+  bold: {
+    fontWeight: "bold",
+    fontSize: 17,
+  },
+  border: {
+    borderBottom: 2,
+    borderTop: 2,
+    paddingVertical: 8,
+    paddingHorizontal: 15,
+    marginVertical: 15,
+  },
+  SubmittedBy: {
+    marginBottom: 15,
+    marginLeft: 30,
+    fontSize:20
+  },
+  section: {
+    marginBottom: 20,
+    marginTop: 20,
+  },
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  column: {
+    width: "48%",
+  },
+});
+
+// PDF Template
+const ReportTemplate = ({ formData }) => (
+  <Document>
+    <Page size="A4" style={styles.page}>
+      <View style={styles.header}>
+        <Text style={styles.title}>
+          Pundra University of Science & Technology
+        </Text>
+        <Image style={styles.logo} src={universityLogo} />
+        <Text style={styles.subtitle}>
+          Department of{" "}
+          {formData.department === "Others"
+            ? formData.othersDepartment
+            : formData.department}
+        </Text>
+        <Text style={(styles.subtitle, styles.border)}>{formData.title}</Text>
+      </View>
+      <View style={styles.section}>
+        <Text style={styles.text}>
+          <Text style={styles.bold}>Course Code:</Text> {formData.courseCode}
+        </Text>
+        <Text style={styles.text}>
+          <Text style={styles.bold}>Course Title:</Text> {formData.courseTitle}
+        </Text>
+        <Text style={styles.text}>
+          <Text style={styles.bold}>Experiment No:</Text>{" "}
+          {formData.experimentNo}
+        </Text>
+        <Text style={styles.text}>
+          <Text style={styles.bold}>Experiment Name:</Text>{" "}
+          {formData.experimentName}
+        </Text>
+      </View>
+
+      <View style={[styles.row, styles.section]}>
+        <View style={styles.column}>
+          <Text style={styles.SubmittedBy}>Submitted by:</Text>
+          <Text style={styles.text}>Name: {formData.studentName}</Text>
+          <Text style={styles.text}>ID No: {formData.studentId}</Text>
+          <Text style={styles.text}>Batch: {formData.batch}</Text>
+          <Text style={styles.text}>Semester: {formData.semester}</Text>
+          <Text style={styles.text}>Session: {formData.session}</Text>
+        </View>
+        <View style={styles.column}>
+          <Text style={styles.SubmittedBy}>Submitted to:</Text>
+          <Text style={styles.text}>{formData.teacherName}</Text>
+          <Text style={styles.text}>
+            {formData.designation === "Others"
+              ? formData.otherDesignation
+              : formData.designation}
+          </Text>
+          <Text style={styles.text}>
+            Dept. of{" "}
+            {formData.teacherDepartment === "Others"
+              ? formData.customTeacherDepartment
+              : formData.teacherDepartment}
+            , PUB
+          </Text>
+        </View>
+      </View>
+      <View style={styles.section}>
+        <Text style={styles.text}>
+          {formData.title === "Assignment" ? (
+            ""
+          ) : (
+            <>
+              <Text style={styles.bold}>Date of Experiment:</Text>{" "}
+              {formData.dateOfExperiment}
+            </>
+          )}
+        </Text>
+
+        <Text style={styles.text}>
+          <Text style={styles.bold}>Date of Submission:</Text>{" "}
+          {formData.dateOfSubmission}
+        </Text>
+      </View>
+    </Page>
+  </Document>
+);
+
+const PdfGenerator2 = () => {
   const [formData, setFormData] = useState({
     department: "",
     othersDepartment: "",
@@ -26,27 +180,16 @@ const PdfGenerator = () => {
     dateOfSubmission: "",
   });
 
+  const [showPdf, setShowPdf] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const generatePDF = () => {
-    const element = document.getElementById("report");
-    html2canvas(element).then((canvas) => {
-      const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF("p", "mm", "a4");
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
-      pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
-      pdf.save("Generated_Report.pdf");
-    });
-  };
-
   return (
     <div className="p-4">
-      <div className="lg:flex ">
-        {/* lg:flex */}
+      <div className="lg:flex">
         {/* Input Fields */}
         <div className="lg:w-1/2">
           <div className="grid grid-cols-1 gap-4 max-w-lg mx-auto">
@@ -247,37 +390,37 @@ const PdfGenerator = () => {
               </>
             )}
             <>
-
-            <label htmlFor="dateOfSubmission" className="text-left">
-              Date of Submission:
-            </label>
-            <input
-              type="date"
-              name="dateOfSubmission"
-              value={formData.dateOfSubmission}
-              onChange={handleChange}
-              className="p-2 border rounded"
-            />
+              <label htmlFor="dateOfSubmission" className="text-left">
+                Date of Submission:
+              </label>
+              <input
+                type="date"
+                name="dateOfSubmission"
+                value={formData.dateOfSubmission}
+                onChange={handleChange}
+                className="p-2 border rounded"
+              />
             </>
           </div>
-          <button
-            onClick={generatePDF}
-            className="mt-6 bg-blue-500 text-white py-2 px-4 rounded block mx-auto"
-          >
-            Generate PDF
+          {/* PDF Download Section */}
+          <button className="mt-6 bg-blue-500 text-white py-2 px-4 rounded block mx-auto">
+            <PDFDownloadLink
+              document={<ReportTemplate formData={formData} />}
+              fileName="report.pdf"
+            >
+              {({ loading }) =>
+                loading ? "Loading document..." : "Download PDF"
+              }
+            </PDFDownloadLink>
           </button>
         </div>
-
         {/* PDF Template */}
-        <div
-          id="report"
-          className="w-[595px] h-[842px]  sm:p-4 border shadow-lg mx-auto mt-8 lg:mt-0 sm:px-4 bg-white"
-        >
+        <div className="w-[595px] h-[842px]  sm:p-4 border shadow-lg mx-auto mt-8 lg:mt-0 sm:px-4 bg-white">
           <h1 className="text-2xl font-bold text-center pt-10">
             Pundra University of Science & Technology
           </h1>
           <div className="flex flex-col justify-center items-center py-4">
-            <img src={logo} className="w-32" alt="university logo" />
+            <img src={universityLogo} className="w-32" alt="university logo" />
           </div>
           <h2 className="text-center  text-xl">
             Department of{" "}
@@ -366,4 +509,4 @@ const PdfGenerator = () => {
   );
 };
 
-export default PdfGenerator;
+export default PdfGenerator2;
