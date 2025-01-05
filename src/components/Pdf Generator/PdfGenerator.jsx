@@ -405,7 +405,7 @@ const PdfGenerator2 = () => {
           <button className="mt-6 bg-indigo-400 font-bold text-white py-2 px-4 rounded block mx-auto">
             <PDFDownloadLink
               document={<ReportTemplate formData={formData} />}
-              fileName="report.pdf"
+              fileName={`${formData.experimentNo}. ${formData.experimentName}".pdf"`}
             >
               {({ loading }) =>
                 loading ? "Loading document..." : "Download PDF"
