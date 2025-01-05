@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 
   bold: {
     fontWeight: "bold",
-    fontSize: 17,
+    fontSize: 18,
   },
   border: {
     borderBottom: 2,
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   SubmittedBy: {
     marginBottom: 15,
     marginLeft: 30,
-    fontSize:20
+    fontSize: 20,
   },
   section: {
     marginBottom: 20,
@@ -121,14 +121,15 @@ const ReportTemplate = ({ formData }) => (
         </View>
         <View style={styles.column}>
           <Text style={styles.SubmittedBy}>Submitted to:</Text>
-          <Text style={styles.text}>{formData.teacherName}</Text>
+          <Text style={styles.text}>Teacher:{" "}{formData.teacherName}</Text>
           <Text style={styles.text}>
+            Designation:{" "}
             {formData.designation === "Others"
               ? formData.otherDesignation
               : formData.designation}
           </Text>
           <Text style={styles.text}>
-            Dept. of{" "}
+            Dept. of{"  "}
             {formData.teacherDepartment === "Others"
               ? formData.customTeacherDepartment
               : formData.teacherDepartment}
@@ -179,8 +180,6 @@ const PdfGenerator2 = () => {
     dateOfExperiment: "",
     dateOfSubmission: "",
   });
-
-  const [showPdf, setShowPdf] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -403,7 +402,7 @@ const PdfGenerator2 = () => {
             </>
           </div>
           {/* PDF Download Section */}
-          <button className="mt-6 bg-blue-500 text-white py-2 px-4 rounded block mx-auto">
+          <button className="mt-6 bg-indigo-400 font-bold text-white py-2 px-4 rounded block mx-auto">
             <PDFDownloadLink
               document={<ReportTemplate formData={formData} />}
               fileName="report.pdf"
@@ -415,7 +414,7 @@ const PdfGenerator2 = () => {
           </button>
         </div>
         {/* PDF Template */}
-        <div className="w-[595px] h-[842px]  sm:p-4 border shadow-lg mx-auto mt-8 lg:mt-0 sm:px-4 bg-white">
+        <div className="lg:w-[595px] lg:h-[842px]  sm:p-4 border shadow-lg mx-auto mt-8 lg:mt-0 sm:px-4 bg-white">
           <h1 className="text-2xl font-bold text-center pt-10">
             Pundra University of Science & Technology
           </h1>
@@ -469,14 +468,15 @@ const PdfGenerator2 = () => {
             <div className="w-1/2 text-right">
               <p className="border-b-2 font-bold w-28 ml-auto">Submitted to:</p>
               <div className="pt-2">
-                <p>{formData.teacherName}</p>
+                <p>Teacher: {formData.teacherName}</p>
                 <p>
-                  {formData.designation === "Others"
+                  Designation:
+                  { formData.designation === "Others"
                     ? formData.otherDesignation
                     : formData.designation}
                 </p>
                 <p>
-                  Dept. of{" "}
+                  Dept:{" "}
                   {formData.teacherDepartment === "Others"
                     ? formData.customTeacherDepartment
                     : formData.teacherDepartment}

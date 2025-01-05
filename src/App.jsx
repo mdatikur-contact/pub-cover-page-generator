@@ -5,7 +5,7 @@ import coverLogo from "./components/images/Cover Page logo.png";
 
 function App() {
   return (
-    <div className="min-w-[612px] min-h-[842px]">
+    <div>
       <div className="flex items-center  mb-6 bg-indigo-400 p-5 ">
         <div className="flex items-center  w-full max-w-4xl lg:px-4">
           <img src={coverLogo} alt="" className="w-14" />
