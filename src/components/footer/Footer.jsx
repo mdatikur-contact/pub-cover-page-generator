@@ -7,7 +7,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="text-white pt-8">
+    <footer className="text-white py-1 mt-7 bg-gray-800">
       <div className="container mx-auto text-center">
         {/* Copyright and Credits Section */}
         <div className="mt-8  border-gray-700 pt-4">
@@ -27,7 +27,7 @@ const Footer = () => {
             . All rights reserved.
           </p>
         </div>
-        <div className="flex justify-center pt-2 gap-3 text-3xl text-pink-600">
+        <div className="flex justify-center  py-2 lg:pb-6 gap-3 text-3xl text-pink-600 ">
           <a href="https://github.com/mdatikur-contact " target="_blank">
             <FaGithub className="border-2 border-gray-700 rounded-full p-1 hover:bg-gray-700" />
           </a>

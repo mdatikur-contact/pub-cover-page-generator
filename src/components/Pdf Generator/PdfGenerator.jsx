@@ -45,8 +45,8 @@ const PdfGenerator = () => {
 
   return (
     <div className="p-4">
-      
-      <div className="lg:flex">
+      <div className="lg:flex ">
+        {/* lg:flex */}
         {/* Input Fields */}
         <div className="lg:w-1/2">
           <div className="grid grid-cols-1 gap-4 max-w-lg mx-auto">
@@ -232,16 +232,22 @@ const PdfGenerator = () => {
               />
             )}
 
-            <label htmlFor="dateOfExperiment" className="text-left">
-              Date of Experiment:
-            </label>
-            <input
-              type="date"
-              name="dateOfExperiment"
-              value={formData.dateOfExperiment}
-              onChange={handleChange}
-              className="p-2 border rounded"
-            />
+            {formData.title !== "Assignment" && (
+              <>
+                <label htmlFor="dateOfExperiment" className="text-left">
+                  Date of Experiment:
+                </label>
+                <input
+                  type="date"
+                  name="dateOfExperiment"
+                  value={formData.dateOfExperiment}
+                  onChange={handleChange}
+                  className="p-2 border rounded"
+                />
+              </>
+            )}
+            <>
+
             <label htmlFor="dateOfSubmission" className="text-left">
               Date of Submission:
             </label>
@@ -252,6 +258,7 @@ const PdfGenerator = () => {
               onChange={handleChange}
               className="p-2 border rounded"
             />
+            </>
           </div>
           <button
             onClick={generatePDF}
@@ -264,7 +271,7 @@ const PdfGenerator = () => {
         {/* PDF Template */}
         <div
           id="report"
-          className="w-[595px] h-[842px] sm:p-4 border shadow-lg mx-auto mt-8 lg:mt-0 bg-white"
+          className="w-[595px] h-[842px]  sm:p-4 border shadow-lg mx-auto mt-8 lg:mt-0 sm:px-4 bg-white"
         >
           <h1 className="text-2xl font-bold text-center pt-10">
             Pundra University of Science & Technology
@@ -278,8 +285,8 @@ const PdfGenerator = () => {
               ? formData.othersDepartment
               : formData.department}
           </h2>
-          <div className="flex flex-col justify-center items-center py-6">
-            <h2 className="border-y-4 border-black w-48 text-center py-2">
+          <div className="flex flex-col items-center py-6">
+            <h2 className="border-y-4 border-black w-48 text-center pt-2 pb-4">
               {formData.title}
             </h2>
           </div>
@@ -336,11 +343,18 @@ const PdfGenerator = () => {
             </div>
           </div>
 
-          <div className="text-left pl-36 pt-8 pb-8">
+          <div className="text-left pl-10 pt-8 pb-8">
             <p>
-              <span className="font-bold">Date of Experiment:</span>{" "}
-              {formData.dateOfExperiment}
+              {formData.title == "Assignment" ? (
+                ""
+              ) : (
+                <>
+                  <span className="font-bold">Date of Experiment:</span>{" "}
+                  {formData.dateOfExperiment}
+                </>
+              )}
             </p>
+
             <p>
               <span className="font-bold">Date of Submission:</span>{" "}
               {formData.dateOfSubmission}
