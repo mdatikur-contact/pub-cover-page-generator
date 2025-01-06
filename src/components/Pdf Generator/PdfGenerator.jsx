@@ -8,7 +8,6 @@ import {
   PDFDownloadLink,
   Image,
 } from "@react-pdf/renderer";
-import { Worker, Viewer } from "@react-pdf-viewer/core";
 import "@react-pdf-viewer/core/lib/styles/index.css";
 import universityLogo from "../images/pub logo.jpg";
 
@@ -29,14 +28,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 25,
-    fontWeight: "bold",
     textAlign: "center",
     marginBottom: 10,
     marginTop: 20,
   },
   subtitle: {
     fontSize: 20,
-    fontWeight: "bold",
     textAlign: "center",
     marginVertical: 20,
   },
@@ -48,8 +45,9 @@ const styles = StyleSheet.create({
   },
 
   bold: {
-    fontWeight: "bold",
-    fontSize: 18,
+    fontWeight:900,
+    fontStyle:900,
+    fontSize: 16,
   },
   border: {
     borderBottom: 2,
@@ -91,45 +89,59 @@ const ReportTemplate = ({ formData }) => (
             ? formData.othersDepartment
             : formData.department}
         </Text>
-        <Text style={(styles.subtitle, styles.border)}>{formData.title}</Text>
+        <Text style={[styles.subtitle, styles.border]}>{formData.title}</Text>
       </View>
       <View style={styles.section}>
         <Text style={styles.text}>
-          <Text style={styles.bold}>Course Code:</Text> {formData.courseCode}
+          <Text style={styles.bold}>Course Code: </Text>{formData.courseCode}
         </Text>
         <Text style={styles.text}>
-          <Text style={styles.bold}>Course Title:</Text> {formData.courseTitle}
+          <Text style={styles.bold}>Course Title: </Text>{formData.courseTitle}
         </Text>
         <Text style={styles.text}>
-          <Text style={styles.bold}>Experiment No:</Text>{" "}
-          {formData.experimentNo}
+          <Text style={styles.bold}>Experiment No: </Text>{formData.experimentNo}
         </Text>
         <Text style={styles.text}>
-          <Text style={styles.bold}>Experiment Name:</Text>{" "}
-          {formData.experimentName}
+          <Text style={styles.bold}>Experiment Name: </Text>{formData.experimentName}
         </Text>
       </View>
 
       <View style={[styles.row, styles.section]}>
         <View style={styles.column}>
-          <Text style={styles.SubmittedBy}>Submitted by:</Text>
-          <Text style={styles.text}>Name: {formData.studentName}</Text>
-          <Text style={styles.text}>ID No: {formData.studentId}</Text>
-          <Text style={styles.text}>Batch: {formData.batch}</Text>
-          <Text style={styles.text}>Semester: {formData.semester}</Text>
-          <Text style={styles.text}>Session: {formData.session}</Text>
+          <Text style={styles.SubmittedBy}>
+            <Text style={styles.bold}>Submitted by: </Text>
+          </Text>
+          <Text style={styles.text}>
+            <Text style={styles.bold}>Name: </Text>{formData.studentName}
+          </Text>
+          <Text style={styles.text}>
+            <Text style={styles.bold}>ID No: </Text>{formData.studentId}
+          </Text>
+          <Text style={styles.text}>
+            <Text style={styles.bold}>Batch: </Text>{formData.batch}
+          </Text>
+          <Text style={styles.text}>
+            <Text style={styles.bold}>Semester: </Text>{formData.semester}
+          </Text>
+          <Text style={styles.text}>
+            <Text style={styles.bold}>Session: </Text>{formData.session}
+          </Text>
         </View>
         <View style={styles.column}>
-          <Text style={styles.SubmittedBy}>Submitted to:</Text>
-          <Text style={styles.text}>Teacher: {formData.teacherName}</Text>
+          <Text style={styles.SubmittedBy}>
+            <Text style={styles.bold}>Submitted to: </Text>
+          </Text>
           <Text style={styles.text}>
-            Designation:{" "}
+            <Text style={styles.bold}>Teacher: </Text>{formData.teacherName}
+          </Text>
+          <Text style={styles.text}>
+            <Text style={styles.bold}>Designation: </Text>
             {formData.designation === "Others"
               ? formData.otherDesignation
               : formData.designation}
           </Text>
           <Text style={styles.text}>
-            Dept. of{"  "}
+            <Text style={styles.bold}>Dept. of </Text>
             {formData.teacherDepartment === "Others"
               ? formData.customTeacherDepartment
               : formData.teacherDepartment}
@@ -143,14 +155,14 @@ const ReportTemplate = ({ formData }) => (
             ""
           ) : (
             <>
-              <Text style={styles.bold}>Date of Experiment:</Text>{" "}
+              <Text style={styles.bold}>Date of Experiment: </Text>
               {formData.dateOfExperiment}
             </>
           )}
         </Text>
 
         <Text style={styles.text}>
-          <Text style={styles.bold}>Date of Submission:</Text>{" "}
+          <Text style={styles.bold}>Date of Submission: </Text>
           {formData.dateOfSubmission}
         </Text>
       </View>
@@ -158,7 +170,8 @@ const ReportTemplate = ({ formData }) => (
   </Document>
 );
 
-const PdfGenerator2 = () => {
+
+const PdfGenerator = () => {
   const [formData, setFormData] = useState({
     department: "",
     othersDepartment: "",
@@ -456,11 +469,11 @@ const PdfGenerator2 = () => {
             <div className="w-1/2">
               <p className="border-b-2 font-bold w-28">Submitted by:</p>
               <div className="pt-2 text-left">
-                <p>Name: {formData.studentName}</p>
-                <p>ID No: {formData.studentId}</p>
-                <p>Batch: {formData.batch}</p>
-                <p>Semester: {formData.semester}</p>
-                <p>Session: {formData.session}</p>
+                <p><span className="font-bold">Name:</span> {formData.studentName}</p>
+                <p><span className="font-bold">ID No:</span> {formData.studentId}</p>
+                <p><span className="font-bold">Batch:</span> {formData.batch}</p>
+                <p><span className="font-bold">Semester:</span> {formData.semester}</p>
+                <p><span className="font-bold">Session:</span> {formData.session}</p>
               </div>
             </div>
 
@@ -468,15 +481,15 @@ const PdfGenerator2 = () => {
             <div className="w-1/2 text-right">
               <p className="border-b-2 font-bold w-28 ml-auto">Submitted to:</p>
               <div className="pt-2">
-                <p>Teacher: {formData.teacherName}</p>
+                <p><span className="font-bold">Teacher:</span> {formData.teacherName}</p>
                 <p>
-                  Designation:
+                <span className="font-bold">Designation:</span>
                   {formData.designation === "Others"
                     ? formData.otherDesignation
                     : formData.designation}
                 </p>
                 <p>
-                  Dept:{" "}
+                <span className="font-bold">Dept:{" "}</span>
                   {formData.teacherDepartment === "Others"
                     ? formData.customTeacherDepartment
                     : formData.teacherDepartment}
@@ -509,4 +522,4 @@ const PdfGenerator2 = () => {
   );
 };
 
-export default PdfGenerator2;
+export default PdfGenerator;

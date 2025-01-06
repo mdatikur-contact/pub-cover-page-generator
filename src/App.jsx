@@ -23,12 +23,12 @@ function App() {
             Cover Page Generator
           </h1>
         </div>
-        <div className="pr-5">
+        <div className="lg:pr-5">
           <button
             className="border p-1 rounded hover:bg-indigo-500 transition"
             onClick={handleAboutToggle}
           >
-            <RiInformation2Line className="text-3xl text-white" />
+            <RiInformation2Line className="text-xl text-white" />
           </button>
         </div>
       </div>
