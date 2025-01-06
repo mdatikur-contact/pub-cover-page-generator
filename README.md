@@ -68,7 +68,7 @@ cover-page-generator/
 ## 📷 Screenshots
 
 ### **Home Page**
-![Home Page](![image](https://github.com/user-attachments/assets/d33e3100-bab9-438a-9e77-7699a6451c58)
+![Home Page](![image](https://github.com/user-attachments/assets/d33e3100-bab9-438a-9e77-7699a6451c58))
 
 
 ### **PDF Preview**
