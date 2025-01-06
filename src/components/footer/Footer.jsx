@@ -10,7 +10,7 @@ const Footer = () => {
     <footer className="text-white py-1 mt-7 bg-gray-800">
       <div className="container mx-auto text-center">
         {/* Copyright and Credits Section */}
-        <div className="mt-8  border-gray-700 pt-4">
+        <div className="  border-gray-700 py-4">
           <p className="text-sm text-gray-400">
             &copy; {currentYear}{" "}
             <span>
@@ -27,23 +27,7 @@ const Footer = () => {
             . All rights reserved.
           </p>
         </div>
-        <div className="flex justify-center  py-2 lg:pb-6 gap-3 text-3xl text-pink-600 ">
-          <a href="https://github.com/mdatikur-contact " target="_blank">
-            <FaGithub className="border-2 border-gray-700 rounded-full p-1 hover:bg-gray-700" />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/mdatikur-contact/"
-            target="_blank"
-          >
-            <BiLogoLinkedin className="border-2 border-gray-700 rounded-full p-1 hover:bg-gray-700" />
-          </a>
-          <a href="https://leetcode.com/u/atikur45bd/" target="_blank">
-            <TbBrandLeetcode className="border-2 border-gray-700 rounded-full p-1 hover:bg-gray-700" />
-          </a>
-          <a href="https://x.com/mdAtikurContact" target="_blank">
-            <FaXTwitter className="border-2 border-gray-700 rounded-full p-1 hover:bg-gray-700" />
-          </a>
-        </div>
+        
       </div>
     </footer>
   );

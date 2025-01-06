@@ -121,7 +121,7 @@ const ReportTemplate = ({ formData }) => (
         </View>
         <View style={styles.column}>
           <Text style={styles.SubmittedBy}>Submitted to:</Text>
-          <Text style={styles.text}>Teacher:{" "}{formData.teacherName}</Text>
+          <Text style={styles.text}>Teacher: {formData.teacherName}</Text>
           <Text style={styles.text}>
             Designation:{" "}
             {formData.designation === "Others"
@@ -471,7 +471,7 @@ const PdfGenerator2 = () => {
                 <p>Teacher: {formData.teacherName}</p>
                 <p>
                   Designation:
-                  { formData.designation === "Others"
+                  {formData.designation === "Others"
                     ? formData.otherDesignation
                     : formData.designation}
                 </p>
