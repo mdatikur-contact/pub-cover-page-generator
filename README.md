@@ -73,7 +73,6 @@ cover-page-generator/
 
 ### **PDF Preview**
 ![PDF Preview](![image](https://github.com/user-attachments/assets/21d45a4f-c16f-443b-9d43-0f5198391285)
-)
 
 ---
 
