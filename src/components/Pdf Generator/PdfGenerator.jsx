@@ -99,10 +99,10 @@ const ReportTemplate = ({ formData }) => (
           <Text style={styles.bold}>Course Title: </Text>{formData.courseTitle}
         </Text>
         <Text style={styles.text}>
-          <Text style={styles.bold}>Experiment No: </Text>{formData.experimentNo}
+          <Text style={styles.bold}>Topic No: </Text>{formData.experimentNo}
         </Text>
         <Text style={styles.text}>
-          <Text style={styles.bold}>Experiment Name: </Text>{formData.experimentName}
+          <Text style={styles.bold}>Topic Name: </Text>{formData.experimentName}
         </Text>
       </View>
 
@@ -309,7 +309,7 @@ const PdfGenerator = () => {
             <input
               type="text"
               name="experimentNo"
-              placeholder="Experiment No"
+              placeholder="Topic No"
               value={formData.experimentNo}
               onChange={handleChange}
               className="p-2 border rounded"
@@ -317,7 +317,7 @@ const PdfGenerator = () => {
             <input
               type="text"
               name="experimentName"
-              placeholder="Experiment Name"
+              placeholder="Topic Name"
               value={formData.experimentName}
               onChange={handleChange}
               className="p-2 border rounded"
@@ -455,11 +455,11 @@ const PdfGenerator = () => {
               {formData.courseTitle}
             </p>
             <p>
-              <span className="font-bold">Experiment No:</span>{" "}
+              <span className="font-bold">Topic No:</span>{" "}
               {formData.experimentNo}
             </p>
             <p>
-              <span className="font-bold">Experiment Name:</span>{" "}
+              <span className="font-bold">Topic Name:</span>{" "}
               {formData.experimentName}
             </p>
           </div>
